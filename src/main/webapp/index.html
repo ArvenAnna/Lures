@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Lures</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<script>
+    var error = {
+        message: 'Error message',
+        cause: 'IOException'
+    }
+
+    var details = {
+        leng: 0.56,
+        weight: 2.65,
+        depth: 4.56,
+        type: 'SUSPENDER'
+    };
+    var color = {
+        img: 'Path/to/img',
+        name: 'ColorName'
+    }
+
+    var colors = [color];
+
+    var lure = {
+        name: 'LureName',
+        producer: 'LureProducer',
+        price: 0.03,
+        description: 'Description',
+        details: details,
+        colors: colors
+    };
+
+    function retrieveLureJson() {
+        lure.id = 1;
+        color.id = 4;
+        details.id = 1;
+        alert(JSON.stringify(lure, null, 4));
+        lure.id = undefined;
+        color.id = undefined;
+        details.id = undefined;
+    }
+    function retrieveLuresJson() {
+        lure.id = 1;
+        color.id = 4;
+        details.id = 1;
+        alert(JSON.stringify([lure], null, 4));
+        lure.id = undefined;
+        color.id = undefined;
+        details.id = undefined;
+    }
+    function saveLureJson() {
+        alert(JSON.stringify(lure, null, 4));
+    }
+    function errorHandlde() {
+        alert(JSON.stringify(error, null, 4));
+    }
+
+    var comment = {
+        comment: 'comment',
+        author: 'Vasya',
+        date: '2008-10-23 16:52:04'
+    }
+
+    function saveComment() {
+        alert(JSON.stringify(comment, null, 4));
+    }
+
+    function retrieveComments() {
+        comment.id = 1;
+        alert(JSON.stringify([comment], null, 4));
+        comment.id = undefined;
+    }
+</script>
+It's a rest-service with the next API:<br><br>
+<table>
+    <thead>
+    <td>method</td>
+    <td>url</td>
+    <td>description</td>
+    <td>input</td>
+    <td>output</td>
+    </thead>
+    <tr>
+        <td>GET</td>
+        <td>lure.req?id={some lure id}</td>
+        <td>retrieve lure by it's id</td>
+        <td>url param <b>id</b></td>
+        <td>
+            <button onclick="retrieveLureJson()">json</button>
+        </td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>lures.req</td>
+        <td>retrieve all lures</td>
+        <td>-</td>
+        <td>
+            <button onclick="retrieveLuresJson()">json</button>
+        </td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>lure.req</td>
+        <td>save new lure with colors and details</td>
+        <td>
+            <button onclick="saveLureJson()">json</button>
+        </td>
+        <td>
+            id of new lure
+        </td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>lure.req?id={some lure id}</td>
+        <td>delete lure by it's id</td>
+        <td>
+            id of deleted lure
+        </td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>comments.req?itemId={some item id}</td>
+        <td>retrieve comments of chosen lure</td>
+        <td>url param <b>itemId</b></td>
+        <td>
+            <button onclick="retrieveComments()">json</button>
+        </td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>comment.req?itemId={some item id}</td>
+        <td>add comment to chosen lure</td>
+        <td>url param <b>itemId</b> and<br>
+            <button onclick="saveComment()">json</button>
+        </td>
+        <td>
+            id of new comment
+        </td>
+    </tr>
+</table>
+<br><br>
+Errors handled next <button onclick="errorHandlde()">json</button>
+<style>
+    tr {
+        text-align: left;
+    }
+
+    td {
+
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    thead td {
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+</body>
+
+</html>
